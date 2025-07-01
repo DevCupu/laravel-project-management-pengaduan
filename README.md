@@ -2,6 +2,7 @@
 
 SI-Lapor adalah aplikasi web untuk pelaporan dan manajemen data. Berikut adalah beberapa fitur utama:
 
+![erd](ss-silapor-admin.png)
 ![erd](erd_silapor.png)
 
 | No | Nama Tabel            | Deskripsi                                                                                         | Atribut Penting / Relasi                                                                                   |
@@ -74,3 +75,12 @@ SI-Lapor adalah aplikasi web untuk pelaporan dan manajemen data. Berikut adalah 
 - Statistik jumlah pengaduan per kategori
 - Statistik pengaduan berdasarkan status
 - Grafik tren pengaduan bulanan
+
+### cache
+```bash
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan optimize:clear
+```

@@ -20,7 +20,8 @@ class UserController extends Controller
             $query->where('is_verified', false);
         }
 
-        $users = $query->get();
+        $users = $query->paginate(10)->appends($request->query());
+
 
         return view('admin.users.index', compact('users', 'filter'));
     }

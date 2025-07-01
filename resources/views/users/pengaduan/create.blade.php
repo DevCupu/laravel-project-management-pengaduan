@@ -7,14 +7,16 @@
             @csrf
 
             <div>
-                <label for="judul" class="block text-base font-semibold text-gray-700 mb-2">Judul <span class="text-red-500">*</span></label>
+                <label for="judul" class="block text-base font-semibold text-gray-700 mb-2">Judul <span
+                        class="text-red-500">*</span></label>
                 <input type="text" name="judul" id="judul"
                     class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-gray-400"
                     required placeholder="Masukkan judul pengaduan" />
             </div>
 
             <div>
-                <label for="kategori_id" class="block text-base font-semibold text-gray-700 mb-2">Kategori <span class="text-red-500">*</span></label>
+                <label for="kategori_id" class="block text-base font-semibold text-gray-700 mb-2">Kategori <span
+                        class="text-red-500">*</span></label>
                 <select name="kategori_id" id="kategori_id"
                     class="w-full border border-gray-300 rounded-xl p-3 bg-white text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     required>
@@ -28,17 +30,27 @@
             </div>
 
             <div>
-                <label for="isi" class="block text-base font-semibold text-gray-700 mb-2">Isi Pengaduan <span class="text-red-500">*</span></label>
+                <label for="isi" class="block text-base font-semibold text-gray-700 mb-2">Isi Pengaduan <span
+                        class="text-red-500">*</span></label>
                 <textarea name="isi" id="isi"
                     class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-gray-400"
                     rows="6" required placeholder="Tuliskan detail pengaduan Anda"></textarea>
             </div>
 
             <div>
-                <label for="gambar" class="block text-base font-semibold text-gray-700 mb-2">Upload Gambar <span class="text-gray-400 font-normal">(Opsional)</span></label>
+                <label for="gambar" class="block text-base font-semibold text-gray-700 mb-2">Upload Gambar <span
+                        class="text-gray-400 font-normal">(Opsional)</span></label>
                 <input type="file" name="gambar" id="gambar"
                     class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                 <p class="text-xs text-gray-400 mt-2">Format: JPG, PNG. Maksimal 2MB.</p>
+            </div>
+
+            <div>
+                <label for="lampiran" class="block text-base font-semibold text-gray-700 mb-2">Lampiran Tambahan <span
+                        class="text-gray-400 font-normal">(Opsional, bisa lebih dari 1)</span></label>
+                <input type="file" name="lampiran[]" id="lampiran" multiple
+                    class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                <p class="text-xs text-gray-400 mt-2">Format yang diizinkan: PDF, DOCX, JPG, PNG. Maks 5MB per file.</p>
             </div>
 
             <div class="flex justify-end">

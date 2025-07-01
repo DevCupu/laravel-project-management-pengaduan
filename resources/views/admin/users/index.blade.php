@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container mx-auto mt-8 px-4">
+    <div class="container mx-auto mt-8 px-2 sm:px-8 max-w-full">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-            <h2 class="text-2xl font-bold text-gray-800">Daftar User</h2>
+            <h2 class="text-2xl font-bold text-gray-800">Daftar Verfikai Pelapor!</h2>
             <span class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold shadow">
                 Total Pengguna: {{ $users->count() }}
             </span>
@@ -12,10 +12,11 @@
         <form method="GET" action="{{ route('admin.users.index') }}" class="mb-6 flex items-center gap-3">
             <label for="filter" class="text-gray-700 font-medium">Filter:</label>
             <select id="filter" name="filter" onchange="this.form.submit()"
-            class="block w-48 px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
-            <option value="">Semua</option>
-            <option value="verified" {{ request('filter') === 'verified' ? 'selected' : '' }}>Terverifikasi</option>
-            <option value="unverified" {{ request('filter') === 'unverified' ? 'selected' : '' }}>Belum Diverifikasi</option>
+                class="block w-48 px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+                <option value="">Semua</option>
+                <option value="verified" {{ request('filter') === 'verified' ? 'selected' : '' }}>Terverifikasi</option>
+                <option value="unverified" {{ request('filter') === 'unverified' ? 'selected' : '' }}>Belum Diverifikasi
+                </option>
             </select>
         </form>
 
@@ -121,12 +122,12 @@
                                         @method('PUT')
                                         <button type="submit"
                                             class="inline-flex items-center px-3 py-1 rounded-full bg-green-200 text-green-800 text-xs font-semibold gap-1 hover:bg-green-300 transition">
-                                            <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor"
-                                                stroke-width="2" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7">
-                                                </path>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 18L18 6M6 6l12 12" />
                                             </svg>
-                                            Terverifikasi
+                                            Batalkan Verifikasi
                                         </button>
                                     </form>
                                 @else
@@ -141,7 +142,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3">
                                                 </path>
                                             </svg>
-                                            Belum Verifikasi
+                                            Verifikasi sekarang!
                                         </button>
                                     </form>
                                 @endif
@@ -163,6 +164,21 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="m-5 mt-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                <div class="text-gray-600 text-sm text-center sm:text-left">
+                    <span>Menampilkan</span>
+                    <span class="font-semibold">{{ $users->firstItem() ?? 0 }}</span>
+                    <span>-</span>
+                    <span class="font-semibold">{{ $users->lastItem() ?? 0 }}</span>
+                    <span>dari</span>
+                    <span class="font-semibold">{{ $users->total() }}</span>
+                    <span>pengguna</span>
+                </div>
+                <div class="flex justify-center sm:justify-end">
+                    {{ $users->withQueryString()->links('vendor.pagination.tailwind') }}
+                </div>
+            </div>
+
         </div>
     </div>
 

@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminKomentarController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\Admin\AdminPengaduanController;
+use App\Http\Controllers\Admin\KategoriPengaduanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WargaTerdaftarController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifiedUser;
@@ -34,6 +37,7 @@ Route::middleware(['auth', 'is_user', VerifiedUser::class])
         Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
         Route::get('/pengaduan/{id}', [PengaduanController::class, 'show'])->name('pengaduan.show');
         Route::get('/pengaduan/{id}/edit', [PengaduanController::class, 'edit'])->name('pengaduan.edit');
+        Route::put('/pengaduan/{id}', [PengaduanController::class, 'update'])->name('pengaduan.update');
         Route::delete('/pengaduan/{id}', [PengaduanController::class, 'destroy'])->name('pengaduan.destroy');
     });
 
@@ -52,6 +56,16 @@ Route::middleware(['auth', 'is_admin', VerifiedUser::class])
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::put('/users/{user}/verify', [UserController::class, 'verify'])->name('users.verify');
         Route::put('/users/{user}/unverify', [UserController::class, 'unverify'])->name('users.unverify');
+
+        // Kelola Kategori
+        Route::resource('/kategori', KategoriPengaduanController::class)->except(['show']);
+
+        // Add Komen Admin
+        Route::post('/pengaduan/{pengaduan}/komentar', [AdminKomentarController::class, 'store'])->name('pengaduan.komentar.store');
+        Route::delete('/pengaduan/komentar/{komentar}', [AdminKomentarController::class, 'destroy'])->name('pengaduan.komentar.destroy');
+
+        // Kelola Warga
+        Route::resource('/warga', WargaTerdaftarController::class)->except(['show']);
     });
 
 

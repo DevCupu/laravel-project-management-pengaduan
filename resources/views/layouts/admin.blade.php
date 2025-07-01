@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'si-lapor') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -23,24 +23,34 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-800">
         @include('layouts.navigation')
-        <!-- Page Content with Sidebar -->
-        <div class="flex min-h-screen bg-gray-100">
+
+        <!-- Modern Responsive Layout with Sidebar -->
+        <div class="min-h-screen flex bg-gradient-to-br from-blue-50 via-white to-blue-100">
             <!-- Sidebar -->
-            <aside class="w-72 bg-gradient-to-b from-blue-800 to-blue-900 text-white p-6 shadow-xl flex flex-col">
-                <div class="flex items-center mb-10">
-                    <svg class="w-10 h-10 mr-3 text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"
-                            fill="none" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2 2 4-4" />
-                    </svg>
-                    <span class="text-3xl font-extrabold tracking-wide">SI-Lapor</span>
+            <input type="checkbox" id="sidebar-toggle" class="hidden peer" />
+            <aside
+                class="fixed z-30 inset-y-0 left-0 w-64 bg-white/90 backdrop-blur-lg border-r border-blue-100 shadow-xl flex flex-col transform -translate-x-full transition-transform duration-200 ease-in-out peer-checked:translate-x-0 md:static md:translate-x-0 md:w-72 md:flex md:z-auto">
+                <div class="flex items-center gap-3 mb-10 px-4 pt-6">
+                    <span
+                        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-blue-400 to-blue-600 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"
+                                fill="none" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2 2 4-4" />
+                        </svg>
+                    </span>
+                    <span class="text-2xl font-bold text-blue-700 tracking-wide">SI-Lapor</span>
                 </div>
                 <nav class="flex-1">
                     <ul class="space-y-3">
                         <li>
                             <a href="{{ route('users.dashboard') }}"
-                                class="flex items-center py-3 px-5 rounded-xl hover:bg-blue-700 transition-colors font-medium {{ request()->routeIs('admin.dashboard') ? 'bg-blue-700' : '' }}">
+                                class="group flex items-center py-3 px-5 rounded-xl transition-colors font-medium relative
+                                    {{ request()->routeIs('admin.dashboard') ? 'bg-blue-300' : '' }}"
+                                style="width: calc(90% - 10px); margin-left: 20px">
+                                <span
+                                    class="absolute inset-0 rounded-xl group-hover:bg-blue-100 transition-colors -z-10"></span>
                                 <svg class="w-6 h-6 mr-4 text-blue-200" fill="none" stroke="currentColor"
                                     stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -51,7 +61,11 @@
                         </li>
                         <li>
                             <a href="{{ route('admin.pengaduan.index') }}"
-                                class="flex items-center py-3 px-5 rounded-xl hover:bg-blue-700 transition-colors font-medium {{ request()->routeIs('admin.pengaduan.*') ? 'bg-blue-700' : '' }}">
+                                class="group flex items-center py-3 px-5 rounded-xl transition-colors font-medium relative
+                                    {{ request()->routeIs('admin.pengaduan.*') ? 'bg-blue-300' : '' }}"
+                                style="width: calc(90% - 10px); margin-left: 20px">
+                                <span
+                                    class="absolute inset-0 rounded-xl group-hover:bg-blue-100 transition-colors -z-10"></span>
                                 <svg class="w-6 h-6 mr-4 text-blue-200" fill="none" stroke="currentColor"
                                     stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -62,7 +76,11 @@
                         </li>
                         <li>
                             <a href="{{ route('admin.users.index') }}"
-                                class="flex items-center py-3 px-5 rounded-xl hover:bg-blue-700 transition-colors font-medium {{ request()->routeIs('admin.users.*') ? 'bg-blue-700' : '' }}">
+                                class="group flex items-center py-3 px-5 rounded-xl transition-colors font-medium relative
+                                    {{ request()->routeIs('admin.users.*') ? 'bg-blue-300' : '' }}"
+                                style="width: calc(90% - 10px); margin-left: 20px">
+                                <span
+                                    class="absolute inset-0 rounded-xl group-hover:bg-blue-100 transition-colors -z-10"></span>
                                 <svg class="w-6 h-6 mr-4 text-blue-200" fill="none" stroke="currentColor"
                                     stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -71,15 +89,46 @@
                                 Kelola Pelapor
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.kategori.index') }}"
+                                class="group flex items-center py-3 px-5 rounded-xl transition-colors font-medium relative
+                                    {{ request()->routeIs('admin.categories.*') ? 'bg-blue-300' : '' }}"
+                                style="width: calc(90% - 10px); margin-left: 20px">
+                                <span
+                                    class="absolute inset-0 rounded-xl group-hover:bg-blue-100 transition-colors -z-10"></span>
+                                <svg class="w-6 h-6 mr-4 text-blue-200" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                Kelola Kategori
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.warga.index') }}"
+                                class="group flex items-center py-3 px-5 rounded-xl transition-colors font-medium relative
+                                    {{ request()->routeIs('admin.warga.*') ? 'bg-blue-300' : '' }}"
+                                style="width: calc(90% - 10px); margin-left: 20px">
+                                <span
+                                    class="absolute inset-0 rounded-xl group-hover:bg-blue-100 transition-colors -z-10"></span>
+                                <svg class="w-6 h-6 mr-4 text-blue-200" fill="none" stroke="currentColor"
+                                    stroke-width="2" vi ewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16 11c1.657 0 3 1.343 3 3v4H5v-4c0-1.657 1.343-3 3-3h8zm-4-4a4 4 0 110 8 4 4 0 010-8z" />
+                                </svg>
+                                Warga Terdaftar
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
-                <div class="mt-10">
+                <div class="mt-auto px-4 pb-6">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit"
-                            class="w-full flex items-center py-2 px-5 rounded-xl bg-blue-700 hover:bg-blue-800 transition-colors font-medium">
-                            <svg class="w-6 h-6 mr-4 text-blue-200" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
+                            class="w-full flex items-center gap-3 py-2 px-4 rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-semibold shadow transition-all">
+                            <svg class="w-6 h-6 text-blue-200" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
                             </svg>
@@ -89,11 +138,34 @@
                 </div>
             </aside>
 
+            <!-- Sidebar Toggle Button (Mobile) -->
+            <label for="sidebar-toggle"
+                class="md:hidden fixed z-40 top-4 left-4 bg-blue-600 text-white p-2 rounded-full shadow-lg cursor-pointer">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </label>
+            <!-- Overlay for Sidebar (Mobile) -->
+            <label for="sidebar-toggle"
+                class="fixed inset-0 bg-white bg-opacity-40 z-20 hidden peer-checked:block md:hidden"></label>
+
             <!-- Main Content -->
-            <main class="flex-1 p-8">
-                @yield('content')
-            </main>
+            <main class="flex-1 p-5 md:p-8 mt-14 md:mt-0 w-full max-w-6xl mx-auto transition-all duration-300">
+                <header class="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h1 class="text-4xl font-black text-blue-800 tracking-tight leading-tight drop-shadow-sm">
+                        @yield('title', 'Dashboard')</h1>
+                    @hasSection('actions')
+                        <div class="flex gap-2">
+                            @yield('actions')
+                        </div>
+                    @endif
+                </header>
+                <div class="space-y-8">
+                    @yield('content')
+                </div>
         </div>
+        </main>
+    </div>
 
     </div>
 </body>

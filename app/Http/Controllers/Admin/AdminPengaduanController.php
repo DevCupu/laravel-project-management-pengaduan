@@ -28,7 +28,7 @@ class AdminPengaduanController extends Controller
             });
         }
 
-        $pengaduans = $query->get();
+        $pengaduans = $query->paginate(10)->appends($request->query());
 
         return view('admin.pengaduan.index', compact('pengaduans'));
     }

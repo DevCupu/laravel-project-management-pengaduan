@@ -1,7 +1,7 @@
 @extends('layouts.users')
 
 @section('content')
-    <div class="max-w-4xl mx-auto mt-10">
+    <div class="max-w-6xl mx-auto mt-10">
         <h1 class="text-3xl font-extrabold mb-8 text-indigo-500 flex items-center gap-2">
             <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +45,8 @@
                 {{-- Status description --}}
                 <div class="mb-2">
                     @if ($pengaduan->status == 'selesai')
-                        <span class="text-green-700 text-sm">Pengaduan telah selesai diproses terimkasih telah mengirim pengaduan, pihak terkait akan segera tindak lanjut</span>
+                        <span class="text-green-700 text-sm">Pengaduan telah selesai diproses terimkasih telah mengirim
+                            pengaduan, pihak terkait akan segera tindak lanjut</span>
                     @elseif ($pengaduan->status == 'proses')
                         <span class="text-yellow-700 text-sm">Pengaduan sedang dalam proses penanganan.</span>
                     @else
@@ -62,7 +63,7 @@
                     {{ $pengaduan->created_at->format('d M Y, H:i') }}
                 </p>
                 <p class="mt-2 text-gray-700">{{ Str::limit($pengaduan->isi, 120) }}</p>
-                
+
                 <div class="mt-4 flex justify-between items-center">
                     <div class="flex gap-2">
                         <a href="{{ route('users.pengaduan.show', $pengaduan->id) }}"
@@ -76,15 +77,20 @@
                         <a href="{{ route('users.pengaduan.edit', $pengaduan->id) }}"
                             class="text-yellow-600 font-semibold hover:underline flex items-center gap-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L5 11.828a2 2 0 010-2.828L13 5"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L5 11.828a2 2 0 010-2.828L13 5">
+                                </path>
                             </svg>
                             Edit
                         </a>
-                        <form action="{{ route('users.pengaduan.destroy', $pengaduan->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pengaduan ini?')" class="inline">
+                        <form action="{{ route('users.pengaduan.destroy', $pengaduan->id) }}" method="POST"
+                            onsubmit="return confirm('Yakin ingin menghapus pengaduan ini?')" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 font-semibold hover:underline flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <button type="submit"
+                                class="text-red-600 font-semibold hover:underline flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                                 Hapus
