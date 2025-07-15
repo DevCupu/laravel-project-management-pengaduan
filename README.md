@@ -78,7 +78,7 @@ Dokumentasi ini membahas fitur, instalasi, penggunaan, serta panduan pengembanga
 
 ---
 
-## Screenshot Template Project
+## Screenshot Project
 
 <div align="center">
 
