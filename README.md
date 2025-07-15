@@ -85,11 +85,11 @@ Dokumentasi ini membahas fitur, instalasi, penggunaan, serta panduan pengembanga
 <table>
     <tr>
         <td align="center" valign="top">
-            <img src="users-page.png" alt="Halaman Users" width="700" style="height:400px;object-fit:cover;"/><br/>
+            <img src="users-page.png" alt="Halaman Users"/><br/>
             <b>Halaman User/Warga</b>
         </td>
         <td align="center" valign="top">
-            <img src="ss-silapor-admin.png" alt="Dashboard Admin" width="700" style="height:400px;object-fit:cover;"/><br/>
+            <img src="ss-silapor-admin.png" alt="Dashboard Admin"/><br/>
             <b>Dashboard Admin</b>
         </td>
     </tr>
